@@ -60,6 +60,30 @@ class ProfileController extends BaseController
             'phone' => $this->request->getPost('phone'),
         ];
 
+        // Handle Avatar Upload
+        $avatarFile = $this->request->getFile('avatar');
+        if ($avatarFile && $avatarFile->isValid() && !$avatarFile->hasMoved()) {
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+            if (!in_array(strtolower($avatarFile->getClientExtension()), $allowedTypes)) {
+                return redirect()->back()->withInput()->with('error', 'Format foto profil hanya boleh JPG, PNG, atau GIF.');
+            }
+            if ($avatarFile->getSize() > (2 * 1024 * 1024)) {
+                return redirect()->back()->withInput()->with('error', 'Ukuran foto maksimal 2MB.');
+            }
+
+            $newName = $avatarFile->getRandomName();
+            $avatarFile->move(FCPATH . 'uploads/avatars', $newName);
+            
+            // Hapus foto lama jika ada
+            $user = $this->userModel->find($userId);
+            if (!empty($user['avatar']) && file_exists(FCPATH . $user['avatar'])) {
+                unlink(FCPATH . $user['avatar']);
+            }
+            
+            $data['avatar'] = 'uploads/avatars/' . $newName;
+            $this->session->set('user_avatar', $data['avatar']);
+        }
+
         if ($this->request->getPost('password')) {
             $data['password'] = $this->userModel->hashPassword($this->request->getPost('password'));
         }

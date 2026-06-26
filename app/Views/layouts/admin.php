@@ -9,7 +9,19 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']}}}}</script>
-    <style>body{font-family:'Inter',sans-serif}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.animate-fade-in{animation:fadeIn .3s ease-out}</style>
+    <style>
+        body{font-family:'Inter',sans-serif}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        .animate-fade-in{animation:fadeIn .3s ease-out}
+        @media print {
+            .no-print, #admin-sidebar, #sidebar-overlay, .sticky.top-0, form[action*="reports"] { display: none !important; }
+            main { overflow: visible !important; margin: 0 !important; padding: 0 !important; width: 100% !important; }
+            body { background: white !important; }
+            .shadow-sm { box-shadow: none !important; border: 1px solid #e5e7eb !important; }
+            .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 { display: flex !important; flex-wrap: wrap !important; gap: 1rem !important; }
+            .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div { flex: 1 1 20% !important; }
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
 <div class="flex h-screen relative">
@@ -36,9 +48,13 @@
                     <!-- User Profile Pill & Dropdown -->
                     <div class="relative" id="user-menu-container">
                         <button onclick="document.getElementById('user-dropdown').classList.toggle('hidden')" class="flex items-center space-x-3 bg-gray-50 hover:bg-gray-100 transition-colors px-4 py-2 rounded-xl border border-transparent hover:border-gray-200 focus:outline-none">
-                            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase">
-                                <?= substr(session('user_name') ?? 'A', 0, 2) ?>
-                            </div>
+                            <?php if(session('user_avatar')): ?>
+                                <img src="<?= base_url(esc(session('user_avatar'))) ?>" alt="Admin Avatar" class="w-8 h-8 rounded-lg shadow-sm object-cover">
+                            <?php else: ?>
+                                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase">
+                                    <?= substr(session('user_name') ?? 'A', 0, 2) ?>
+                                </div>
+                            <?php endif; ?>
                             <div class="hidden md:block text-left">
                                 <p class="text-sm font-semibold text-gray-900"><?= esc(session('user_name')) ?></p>
                                 <p class="text-xs text-gray-500">Administrator</p>

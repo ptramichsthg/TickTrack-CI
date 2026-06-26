@@ -2,6 +2,13 @@
 
 TickTrack adalah platform manajemen tiket pengaduan pelanggan berbasis web yang dikembangkan menggunakan framework PHP CodeIgniter 4 dan Tailwind CSS. Aplikasi ini dirancang untuk memfasilitasi komunikasi antara klien dan administrator dalam menangani berbagai masalah atau layanan melalui sistem tiket yang terstruktur.
 
+## Tim Pengembang (Tugas Besar)
+
+Proyek ini dikembangkan oleh:
+1. **Arnest Suhendra** (2350081054)
+2. **Bagas Ibnu Abdillah** (2350081074)
+3. **Putra Michael Sitohang** (2350081087)
+
 ## Fitur Utama
 
 ### 1. Portal Pengguna (Klien)
@@ -72,7 +79,7 @@ Aplikasi sekarang dapat diakses melalui browser pada alamat http://localhost:808
 Anda dapat masuk menggunakan kredensial yang dihasilkan oleh Database Seeder:
 * Akun Admin:
   Email: admin@ticktrack.com
-  Password: password123
+  Password: password
 
 ## Teknologi yang Digunakan
 

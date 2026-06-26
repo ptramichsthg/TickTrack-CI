@@ -52,11 +52,12 @@ class AuthController extends BaseController
 
         // Set session
         $this->session->set([
-            'user_id'   => $user['id'],
-            'user_name' => $user['name'],
-            'user_email'=> $user['email'],
-            'user_role' => $user['role'],
-            'is_logged_in' => true,
+            'user_id'     => $user['id'],
+            'user_name'   => $user['name'],
+            'user_email'  => $user['email'],
+            'user_role'   => $user['role'],
+            'user_avatar' => $user['avatar'] ?? null,
+            'is_logged_in'=> true,
         ]);
 
         // Redirect sesuai role
@@ -106,21 +107,111 @@ class AuthController extends BaseController
         ];
 
         $this->userModel->insert($userData);
-        $userId = $this->userModel->getInsertID();
 
-        // Auto-login setelah register
-        $this->session->set([
-            'user_id'      => $userId,
-            'user_name'    => $userData['name'],
-            'user_email'   => $userData['email'],
-            'user_role'    => 'user',
-            'is_logged_in' => true,
+        return redirect()->to('/auth/login')->with('success', 'Registrasi berhasil! Silakan login dengan akun Anda.');
+    }
+
+    // ── Halaman Lupa Password ──
+    public function forgotPassword()
+    {
+        return view('auth/forgot_password', [
+            'title' => 'Lupa Password — TickTrack',
+        ]);
+    }
+
+    // ── Proses Kirim Token Reset ──
+    public function processForgotPassword()
+    {
+        if (!$this->validate(['email' => 'required|valid_email'])) {
+            return redirect()->back()->withInput()->with('error', 'Masukkan email yang valid.');
+        }
+
+        $email = $this->request->getPost('email');
+        $user  = $this->userModel->where('email', $email)->first();
+
+        // Selalu tampilkan pesan sukses (hindari enumerasi email)
+        if (!$user) {
+            return redirect()->to('/auth/forgot-password')
+                ->with('success', 'Jika email terdaftar, link reset telah dikirim. Silakan periksa inbox Anda.');
+        }
+
+        // Generate token & expired 1 jam
+        $token   = bin2hex(random_bytes(32));
+        $expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+        $this->userModel->update($user['id'], [
+            'reset_token'   => hash('sha256', $token),
+            'reset_expires' => $expires,
         ]);
 
-        return redirect()->to('/user/dashboard')->with('success', 'Registrasi berhasil! Selamat datang, ' . $userData['name'] . '!');
+        // Kirim link reset (simulasi: tampilkan di halaman, di produksi pakai email)
+        $resetLink = base_url('auth/reset-password/' . $token);
+
+        // Untuk lingkungan development — simpan link ke session agar bisa dilihat
+        return redirect()->to('/auth/forgot-password')
+            ->with('reset_link', $resetLink)
+            ->with('success', 'Link reset password berhasil dibuat! (Development: lihat link di bawah)');
+    }
+
+    // ── Halaman Reset Password ──
+    public function resetPassword($token = null)
+    {
+        if (!$token) return redirect()->to('/auth/forgot-password')->with('error', 'Token tidak valid.');
+
+        $hashedToken = hash('sha256', $token);
+        $user = $this->userModel
+            ->where('reset_token', $hashedToken)
+            ->where('reset_expires >=', date('Y-m-d H:i:s'))
+            ->first();
+
+        if (!$user) {
+            return redirect()->to('/auth/forgot-password')
+                ->with('error', 'Link reset tidak valid atau sudah kadaluarsa. Minta link baru.');
+        }
+
+        return view('auth/reset_password', [
+            'title' => 'Reset Password — TickTrack',
+            'token' => $token,
+        ]);
+    }
+
+    // ── Proses Reset Password ──
+    public function processResetPassword()
+    {
+        $token = $this->request->getPost('token');
+        $rules = [
+            'password'         => 'required|min_length[6]',
+            'password_confirm' => 'required|matches[password]',
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $hashedToken = hash('sha256', $token);
+        $user = $this->userModel
+            ->where('reset_token', $hashedToken)
+            ->where('reset_expires >=', date('Y-m-d H:i:s'))
+            ->first();
+
+        if (!$user) {
+            return redirect()->to('/auth/forgot-password')
+                ->with('error', 'Token tidak valid atau sudah kadaluarsa.');
+        }
+
+        // Update password & hapus token
+        $this->userModel->update($user['id'], [
+            'password'      => $this->userModel->hashPassword($this->request->getPost('password')),
+            'reset_token'   => null,
+            'reset_expires' => null,
+        ]);
+
+        return redirect()->to('/auth/login')
+            ->with('success', 'Password berhasil direset! Silakan login dengan password baru Anda.');
     }
 
     // ── Logout ──
+
     public function logout()
     {
         $this->session->destroy();

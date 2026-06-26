@@ -16,7 +16,8 @@ class UserModel extends Model
     protected $updatedField     = 'updated_at';
 
     protected $allowedFields = [
-        'name', 'email', 'password', 'role', 'phone', 'avatar', 'is_active',
+        'name', 'email', 'password', 'role', 'phone', 'avatar',
+        'is_active', 'reset_token', 'reset_expires',
     ];
 
     // ── Validation ──

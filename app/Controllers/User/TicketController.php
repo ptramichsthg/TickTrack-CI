@@ -88,6 +88,20 @@ class TicketController extends BaseController
         // Handle file upload
         $file = $this->request->getFile('attachment');
         if ($file && $file->isValid() && !$file->hasMoved()) {
+            // ✅ VALIDASI FILE: tipe & ukuran
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'zip', 'txt'];
+            $maxSizeMB    = 2;
+
+            if (!in_array(strtolower($file->getClientExtension()), $allowedTypes)) {
+                return redirect()->back()->withInput()
+                    ->with('errors', ['attachment' => 'Tipe file tidak diizinkan. Hanya: JPG, PNG, PDF, DOC, DOCX, XLS, XLSX, ZIP, TXT.']);
+            }
+
+            if ($file->getSize() > ($maxSizeMB * 1024 * 1024)) {
+                return redirect()->back()->withInput()
+                    ->with('errors', ['attachment' => "Ukuran file terlalu besar. Maksimal {$maxSizeMB}MB."]);
+            }
+
             $newName = $file->getRandomName();
             $file->move(FCPATH . 'uploads/tickets', $newName);
 
@@ -100,6 +114,7 @@ class TicketController extends BaseController
                 'uploaded_by' => session('user_id'),
             ]);
         }
+
 
         // Notify Admins
         $userModel = new \App\Models\UserModel();
@@ -161,6 +176,20 @@ class TicketController extends BaseController
         // Handle attachment on reply
         $file = $this->request->getFile('attachment');
         if ($file && $file->isValid() && !$file->hasMoved()) {
+            // ✅ VALIDASI FILE: tipe & ukuran
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'zip', 'txt'];
+            $maxSizeMB    = 2;
+
+            if (!in_array(strtolower($file->getClientExtension()), $allowedTypes)) {
+                return redirect()->back()
+                    ->with('error', 'Tipe file tidak diizinkan. Hanya: JPG, PNG, PDF, DOC, DOCX, XLS, XLSX, ZIP, TXT.');
+            }
+
+            if ($file->getSize() > ($maxSizeMB * 1024 * 1024)) {
+                return redirect()->back()
+                    ->with('error', "Ukuran file terlalu besar. Maksimal {$maxSizeMB}MB.");
+            }
+
             $newName = $file->getRandomName();
             $file->move(FCPATH . 'uploads/tickets', $newName);
 
@@ -177,4 +206,44 @@ class TicketController extends BaseController
 
         return redirect()->to('/user/tickets/' . $code)->with('success', 'Balasan berhasil dikirim.');
     }
+
+    // ── Update Status (Self-Service Close Ticket) ──
+    public function updateStatus($code)
+    {
+        $ticket = $this->ticketModel->getTicketByCode($code);
+
+        // Hanya tiket milik user ini yang bisa diubah
+        if (!$ticket || $ticket['user_id'] != session('user_id')) {
+            return redirect()->to('/user/tickets')->with('error', 'Tiket tidak ditemukan.');
+        }
+
+        // Klien hanya diperbolehkan mengubah status menjadi 'resolved' (menyelesaikan tiket)
+        $newStatus = $this->request->getPost('status');
+        if ($newStatus !== 'resolved') {
+            return redirect()->back()->with('error', 'Aksi tidak valid.');
+        }
+
+        // Jangan lakukan update jika sudah diselesaikan
+        if ($ticket['status'] === 'resolved') {
+            return redirect()->back()->with('error', 'Tiket ini sudah diselesaikan.');
+        }
+
+        $this->ticketModel->update($ticket['id'], ['status' => 'resolved']);
+
+        // Notify Admins
+        $userModel = new \App\Models\UserModel();
+        $admins = $userModel->where('role', 'admin')->findAll();
+        $notifModel = new \App\Models\NotificationModel();
+        foreach ($admins as $admin) {
+            $notifModel->insert([
+                'user_id' => $admin['id'],
+                'type' => 'ticket_resolved',
+                'title' => 'Tiket Diselesaikan Klien',
+                'message' => session('user_name') . ' telah menyelesaikan tiket #' . $ticket['code'] . ' secara mandiri.'
+            ]);
+        }
+
+        return redirect()->to('/user/tickets/' . $code)->with('success', 'Terima kasih, tiket telah ditandai sebagai selesai.');
+    }
 }
+

@@ -48,9 +48,13 @@
                     <!-- User Profile Pill & Dropdown -->
                     <div class="relative" id="user-menu-container">
                         <button onclick="document.getElementById('user-dropdown').classList.toggle('hidden')" class="flex items-center space-x-3 bg-gray-50 hover:bg-gray-100 transition-colors px-4 py-2 rounded-xl border border-transparent hover:border-gray-200 focus:outline-none">
-                            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase">
-                                <?= substr(session('user_name') ?? 'U', 0, 2) ?>
-                            </div>
+                            <?php if(session('user_avatar')): ?>
+                                <img src="<?= base_url(esc(session('user_avatar'))) ?>" alt="User Avatar" class="w-8 h-8 rounded-lg shadow-sm object-cover">
+                            <?php else: ?>
+                                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase">
+                                    <?= substr(session('user_name') ?? 'U', 0, 2) ?>
+                                </div>
+                            <?php endif; ?>
                             <div class="hidden md:block text-left">
                                 <p class="text-sm font-semibold text-gray-900"><?= esc(session('user_name')) ?></p>
                                 <p class="text-xs text-gray-500">User</p>

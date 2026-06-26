@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TickTrack — Sistem Helpdesk & Ticketing Modern</title>
-    <meta name="description" content="TickTrack membantu tim Anda mengelola tiket pengaduan, melacak progres, dan meningkatkan kepuasan pelanggan dalam satu platform terpadu.">
+    <title>Tentang Kami — TickTrack</title>
+    <meta name="description" content="Kenali tim pengembang di balik TickTrack — Sistem Helpdesk & Ticketing Modern.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -46,10 +46,10 @@
                 <img src="<?= base_url('images/logo.png') ?>" alt="TickTrack Logo" class="h-12 group-hover:scale-105 transition-transform">
             </a>
             <div class="hidden md:flex items-center gap-8">
-                <a href="#fitur" class="text-sm text-gray-600 hover:text-blue-600 transition-colors font-medium">Fitur</a>
-                <a href="#cara-kerja" class="text-sm text-gray-600 hover:text-blue-600 transition-colors font-medium">Cara Kerja</a>
-                <a href="#statistik" class="text-sm text-gray-600 hover:text-blue-600 transition-colors font-medium">Statistik</a>
-                <a href="<?= base_url('about') ?>" class="text-sm text-gray-600 hover:text-blue-600 transition-colors font-medium">Tentang Kami</a>
+                <a href="/" class="text-sm text-gray-600 hover:text-blue-600 transition-colors font-medium">Beranda</a>
+                <a href="#tim" class="text-sm text-gray-600 hover:text-blue-600 transition-colors font-medium">Tim Kami</a>
+                <a href="#industri" class="text-sm text-gray-600 hover:text-blue-600 transition-colors font-medium">Industri 4.0</a>
+                <a href="<?= base_url('about') ?>" class="text-sm text-blue-600 font-semibold">Tentang Kami</a>
             </div>
             <div class="flex items-center gap-3">
                 <a href="<?= base_url('auth/login') ?>" class="hidden md:inline-flex px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Masuk</a>
@@ -67,10 +67,10 @@
         <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
             <div class="px-6 py-4 space-y-4 flex flex-col">
-                <a href="#fitur" class="text-base font-medium text-gray-600 hover:text-blue-600 mobile-link">Fitur</a>
-                <a href="#cara-kerja" class="text-base font-medium text-gray-600 hover:text-blue-600 mobile-link">Cara Kerja</a>
-                <a href="#statistik" class="text-base font-medium text-gray-600 hover:text-blue-600 mobile-link">Statistik</a>
-                <a href="<?= base_url('about') ?>" class="text-base font-medium text-gray-600 hover:text-blue-600 mobile-link">Tentang Kami</a>
+                <a href="/" class="text-base font-medium text-gray-600 hover:text-blue-600 mobile-link">Beranda</a>
+                <a href="#tim" class="text-base font-medium text-gray-600 hover:text-blue-600 mobile-link">Tim Kami</a>
+                <a href="#industri" class="text-base font-medium text-gray-600 hover:text-blue-600 mobile-link">Industri 4.0</a>
+                <a href="<?= base_url('about') ?>" class="text-base font-semibold text-blue-600 mobile-link">Tentang Kami</a>
                 <div class="h-px bg-gray-100 my-2"></div>
                 <a href="<?= base_url('auth/login') ?>" class="text-base font-medium text-gray-600 hover:text-blue-600 mobile-link">Masuk</a>
                 <a href="<?= base_url('auth/register') ?>" class="inline-flex justify-center px-5 py-3 text-base font-semibold text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition-all text-center">Daftar Gratis</a>
@@ -79,7 +79,7 @@
     </nav>
 
     <!-- ── HERO ───────────────────────────────── -->
-    <section class="hero-gradient relative min-h-screen flex items-center overflow-hidden">
+    <section class="hero-gradient relative min-h-[70vh] flex items-center overflow-hidden">
         <!-- Orbs -->
         <div class="orb w-96 h-96 bg-blue-300 top-20 -left-32"></div>
         <div class="orb w-80 h-80 bg-cyan-300 bottom-20 -right-20"></div>
@@ -93,36 +93,23 @@
                 <!-- Badge -->
                 <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-white rounded-full text-sm font-semibold text-blue-700 mb-8 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse-slow"></span>
-                    Platform Helpdesk Generasi Terbaru
+                    Tugas Besar — Teknologi Web
                     <i data-feather="arrow-right" class="w-3 h-3"></i>
                 </div>
 
                 <!-- Headline -->
                 <h1 class="text-5xl md:text-7xl font-black mb-6 leading-[1.1] tracking-tight text-gray-900">
-                    Kelola Setiap<br>
-                    <span class="gradient-text">Tiket Pengaduan</span><br>
-                    Dengan Presisi
+                    Tentang<br>
+                    <span class="gradient-text">Kami</span>
                 </h1>
 
                 <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-                    TickTrack menghadirkan sistem helpdesk modern yang membantu tim Anda merespons lebih cepat, melacak setiap tiket secara real-time, dan meningkatkan kepuasan pengguna.
+                    Kenali tim pengembang di balik <strong class="text-gray-900">TickTrack</strong> — platform helpdesk dan ticketing modern yang dibangun sebagai proyek Tugas Besar mata kuliah Teknologi Web.
                 </p>
-
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                    <a href="<?= base_url('auth/register') ?>" class="group inline-flex items-center gap-3 px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl hover:from-blue-700 hover:to-blue-800 transition-all glow-btn transform hover:scale-105">
-                        <i data-feather="zap" class="w-5 h-5 group-hover:animate-bounce"></i>
-                        Mulai Gratis Sekarang
-                    </a>
-                    <a href="#fitur" class="inline-flex items-center gap-3 px-8 py-4 text-base font-semibold text-gray-700 bg-white border border-gray-200 rounded-2xl hover:border-blue-300 hover:shadow-md transition-all">
-                        <i data-feather="play-circle" class="w-5 h-5 text-blue-600"></i>
-                        Lihat Fitur
-                    </a>
-                </div>
 
                 <!-- Hero Stats -->
                 <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
-                    <?php $hero_stats = [['99.9%','Uptime Sistem'],['< 2 Jam','Rata-rata Respons'],['10rb+','Tiket Terselesaikan']]; ?>
+                    <?php $hero_stats = [['3','Anggota Tim'],['CI4','Framework'],['100%','Open Source']]; ?>
                     <?php foreach($hero_stats as $s): ?>
                     <div class="glass shadow-sm rounded-2xl p-5 text-center transform hover:-translate-y-1 transition-transform">
                         <div class="text-3xl font-black text-gray-900 stat-number"><?= $s[0] ?></div>
@@ -141,28 +128,28 @@
         </div>
     </section>
 
-    <!-- ── FITUR ──────────────────────────────── -->
-    <section id="fitur" class="bg-white py-24">
+    <!-- ── TENTANG PROYEK ─────────────────────── -->
+    <section class="bg-white py-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-bold mb-4">
-                    <i data-feather="star" class="w-4 h-4"></i> Fitur Unggulan
+                    <i data-feather="info" class="w-4 h-4"></i> Tentang Proyek
                 </div>
-                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">Semua yang Anda Butuhkan</h2>
-                <p class="text-gray-500 text-lg max-w-xl mx-auto">Satu platform lengkap untuk mengelola seluruh siklus tiket pengaduan dari awal hingga selesai.</p>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">Apa Itu <span class="gradient-text">TickTrack</span>?</h2>
+                <p class="text-gray-500 text-lg max-w-xl mx-auto">Sistem Helpdesk & Ticketing Modern untuk pengelolaan pengaduan pelanggan.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <?php
-                $features = [
-                    ['tag','Manajemen Tiket Pintar','Buat, kategorikan, dan prioritaskan tiket secara instan. Sistem kode unik otomatis untuk setiap tiket.','blue'],
-                    ['message-square','Komunikasi Terpadu','Balas dan diskusi langsung di tiket. Histori percakapan tersimpan permanen untuk referensi.','purple'],
-                    ['bar-chart-2','Analitik Real-Time','Dashboard interaktif dengan grafik tren, distribusi status, dan statistik performa tim.','pink'],
-                    ['bell','Notifikasi Instan','Pemberitahuan otomatis saat tiket dibalas, statusnya berubah, atau ada pembaruan penting.','orange'],
-                    ['upload-cloud','Lampiran File','Sertakan screenshot, dokumen, atau file pendukung langsung pada tiket dengan mudah.','teal'],
-                    ['shield','Keamanan Berlapis','Proteksi CSRF, validasi ketat, role-based access control, dan session yang aman.','blue'],
+                $about_features = [
+                    ['code','CodeIgniter 4','Dibangun menggunakan framework PHP CodeIgniter 4 dengan arsitektur MVC dan REST API untuk interoperabilitas sistem.','blue'],
+                    ['layout','Tailwind CSS','Tampilan responsif dan modern menggunakan Tailwind CSS dengan desain yang konsisten di seluruh halaman.','cyan'],
+                    ['database','MySQL Database','Basis data relasional MySQL untuk penyimpanan data tiket, pengguna, kategori, dan notifikasi.','purple'],
+                    ['shield','Keamanan RBAC','Role-based access control untuk pemisahan akses Admin dan User, dilengkapi proteksi CSRF.','pink'],
+                    ['bell','Notifikasi Real-time','Sistem polling notifikasi otomatis untuk pembaruan status tiket dan balasan baru.','orange'],
+                    ['bar-chart-2','Dashboard Analitik','Visualisasi data interaktif menggunakan Chart.js untuk monitoring performa helpdesk.','teal'],
                 ];
-                foreach($features as $f): ?>
+                foreach($about_features as $f): ?>
                 <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm card-hover cursor-default">
                     <div class="w-14 h-14 bg-<?= $f[3] ?>-50 rounded-2xl flex items-center justify-center mb-6">
                         <i data-feather="<?= $f[0] ?>" class="w-7 h-7 text-<?= $f[3] ?>-600"></i>
@@ -175,70 +162,117 @@
         </div>
     </section>
 
-    <!-- ── CARA KERJA ─────────────────────────── -->
-    <section id="cara-kerja" class="bg-slate-50 py-24 border-y border-gray-100">
+    <!-- ── TIM PENGEMBANG ─────────────────────── -->
+    <section id="tim" class="bg-slate-50 py-24 border-y border-gray-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-bold mb-4">
-                    <i data-feather="cpu" class="w-4 h-4"></i> Cara Kerja
+                    <i data-feather="users" class="w-4 h-4"></i> Tim Pengembang
                 </div>
-                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">Sederhana & Efisien</h2>
-                <p class="text-gray-500 text-lg max-w-xl mx-auto">Hanya tiga langkah untuk memulai mengelola pengaduan secara profesional.</p>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">Anggota <span class="gradient-text">Kelompok</span></h2>
+                <p class="text-gray-500 text-lg max-w-xl mx-auto">Mahasiswa Informatika yang berkolaborasi membangun TickTrack.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                <!-- Connector line -->
-                <div class="hidden md:block absolute top-[4.5rem] left-1/3 right-1/3 h-0.5 bg-gradient-to-r from-blue-200 to-cyan-200"></div>
-
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <?php
-                $steps = [
-                    ['01','Daftar & Masuk','Buat akun gratis dalam hitungan detik. Tidak perlu kartu kredit.','user-plus','from-blue-500 to-blue-600'],
-                    ['02','Buat Tiket','Deskripsikan masalah, pilih kategori dan prioritas, lalu kirim tiket Anda.','edit-3','from-blue-600 to-cyan-500'],
-                    ['03','Pantau & Selesai','Terima notifikasi pembaruan dan pantau status tiket hingga terselesaikan.','check-circle','from-cyan-500 to-blue-500'],
+                $members = [
+                    [
+                        'name'  => 'Arnest Suhendra',
+                        'nim'   => '2350081054',
+                        'role'  => 'Project Leader & Backend Developer',
+                        'icon'  => 'server',
+                        'color' => 'blue',
+                    ],
+                    [
+                        'name'  => 'Bagas Ibnu Abdillah',
+                        'nim'   => '2350081074',
+                        'role'  => 'Frontend Developer & UI/UX Designer',
+                        'icon'  => 'monitor',
+                        'color' => 'purple',
+                    ],
+                    [
+                        'name'  => 'Putra Michael Sitohang',
+                        'nim'   => '2350081087',
+                        'role'  => 'Full-Stack Developer & QA Tester',
+                        'icon'  => 'terminal',
+                        'color' => 'cyan',
+                    ],
                 ];
-                foreach($steps as $s): ?>
-                <div class="text-center group relative z-10">
-                    <div class="w-36 h-36 bg-white rounded-full flex flex-col items-center justify-center mx-auto mb-6 shadow-xl border border-gray-50 group-hover:-translate-y-2 transition-transform">
-                        <span class="text-sm font-black text-gray-300 mb-1"><?= $s[0] ?></span>
-                        <div class="w-12 h-12 bg-gradient-to-br <?= $s[4] ?> rounded-xl flex items-center justify-center shadow-md">
-                            <i data-feather="<?= $s[3] ?>" class="w-6 h-6 text-white"></i>
+                foreach ($members as $m): ?>
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm card-hover overflow-hidden flex flex-col items-center text-center justify-center">
+                    <div class="p-8 relative w-full">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-<?= $m['color'] ?>-50 rounded-full text-xs font-bold text-<?= $m['color'] ?>-600 mb-4">
+                            <i data-feather="<?= $m['icon'] ?>" class="w-3 h-3"></i>
+                            <?= $m['role'] ?>
                         </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2"><?= $m['name'] ?></h3>
+                        <p class="text-sm font-semibold text-blue-600 flex items-center justify-center gap-2">
+                            <i data-feather="hash" class="w-3.5 h-3.5"></i>
+                            NIM: <?= $m['nim'] ?>
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3"><?= $s[1] ?></h3>
-                    <p class="text-gray-500 text-base leading-relaxed max-w-xs mx-auto"><?= $s[2] ?></p>
                 </div>
                 <?php endforeach; ?>
             </div>
         </div>
     </section>
 
-    <!-- ── STATISTIK ──────────────────────────── -->
-    <section id="statistik" class="bg-white py-24">
+    <!-- ── INDUSTRI 4.0 ───────────────────────── -->
+    <section id="industri" class="bg-white py-24">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="rounded-[2.5rem] overflow-hidden relative shadow-2xl" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-bold mb-4">
+                    <i data-feather="cpu" class="w-4 h-4"></i> Relevansi Teknologi
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">TickTrack & <span class="gradient-text">Industri 4.0</span></h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">Bagaimana TickTrack mengadopsi prinsip-prinsip revolusi industri keempat dalam pengembangan sistem helpdesk berbasis web.</p>
+            </div>
+
+            <!-- Statistik Industri 4.0 -->
+            <div class="rounded-[2.5rem] overflow-hidden relative shadow-2xl mb-16" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);">
                 <div class="absolute inset-0 opacity-20" style="background-image:radial-gradient(circle at 2px 2px,rgba(255,255,255,.4) 1px,transparent 0);background-size:32px 32px;"></div>
                 
-                <div class="relative z-10 p-12 md:p-20">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Dipercaya & Terbukti</h2>
-                        <p class="text-blue-100 text-lg max-w-lg mx-auto">Angka yang berbicara tentang kualitas layanan platform kami.</p>
+                <div class="relative z-10 p-12 md:p-16">
+                    <div class="text-center mb-12">
+                        <h3 class="text-3xl md:text-4xl font-black text-white mb-4">Transformasi Digital</h3>
+                        <p class="text-blue-100 text-lg max-w-2xl mx-auto">TickTrack mengubah penanganan pengaduan dari metode konvensional menjadi sistem digital yang otomatis, terstruktur, dan berbasis data — sejalan dengan semangat Industri 4.0.</p>
                     </div>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/20">
                         <?php
-                        $stats = [
-                            ['10.000+','Tiket Diselesaikan'],
-                            ['500+','Pengguna Aktif'],
-                            ['99.9%','Tingkat Kepuasan'],
-                            ['< 2 Jam','Rata-rata Respons'],
+                        $i40_stats = [
+                            ['REST API','Interoperabilitas'],
+                            ['RBAC','Keamanan Akses'],
+                            ['Real-time','Notifikasi'],
+                            ['Chart.js','Data Analytics'],
                         ];
-                        foreach($stats as $index => $stat): ?>
+                        foreach($i40_stats as $index => $stat): ?>
                         <div class="text-center <?= $index === 0 ? 'border-none' : '' ?>">
-                            <div class="text-4xl md:text-5xl font-black text-white mb-2 stat-number"><?= $stat[0] ?></div>
+                            <div class="text-3xl md:text-4xl font-black text-white mb-2 stat-number"><?= $stat[0] ?></div>
                             <div class="text-base font-medium text-blue-100"><?= $stat[1] ?></div>
                         </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
+            </div>
+
+            <!-- Pilar Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <?php
+                $pillars = [
+                    ['globe','Interkonektivitas','Sistem REST API memungkinkan komunikasi antar-layanan dan integrasi dengan platform eksternal secara seamless.','blue'],
+                    ['database','Transparansi Informasi','Setiap tiket memiliki jejak audit lengkap — dari pembuatan, diskusi, hingga penyelesaian.','purple'],
+                    ['zap','Bantuan Teknis Cerdas','Notifikasi real-time dan kategorisasi otomatis membantu admin merespons pengaduan lebih cepat.','cyan'],
+                    ['settings','Desentralisasi Keputusan','Role-based access control memungkinkan setiap stakeholder bertindak sesuai kapasitasnya.','pink'],
+                ];
+                foreach($pillars as $p): ?>
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm card-hover cursor-default">
+                    <div class="w-14 h-14 bg-<?= $p[3] ?>-50 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-feather="<?= $p[0] ?>" class="w-7 h-7 text-<?= $p[3] ?>-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3"><?= $p[1] ?></h3>
+                    <p class="text-sm text-gray-500 leading-relaxed"><?= $p[2] ?></p>
+                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -251,10 +285,10 @@
                 Gratis 100% untuk Memulai
             </div>
             <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
-                Siap Tingkatkan<br><span class="gradient-text">Layanan Anda?</span>
+                Siap Mencoba<br><span class="gradient-text">TickTrack?</span>
             </h2>
             <p class="text-gray-500 text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-                Bergabung sekarang dan rasakan perbedaan dalam mengelola pengaduan pelanggan secara profesional dan tertata.
+                Bergabung sekarang dan rasakan kemudahan dalam mengelola pengaduan pelanggan secara profesional dan tertata.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="<?= base_url('auth/register') ?>" class="group inline-flex items-center gap-3 px-10 py-4 text-lg font-bold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl hover:from-blue-700 hover:to-blue-800 transition-all glow-btn transform hover:scale-105 w-full sm:w-auto justify-center">
@@ -275,7 +309,7 @@
             <div class="flex items-center gap-3">
                 <img src="<?= base_url('images/logo.png') ?>" alt="TickTrack Logo" class="h-10">
                 <span class="text-gray-300">|</span>
-                <span class="text-sm font-medium text-gray-500">Sistem Helpdesk & Ticketing</span>
+                <span class="text-sm font-medium text-gray-500">Tugas Besar — Teknologi Web</span>
             </div>
             <p class="text-sm font-medium text-gray-400">&copy; <?= date('Y') ?> TickTrack. Hak cipta dilindungi.</p>
         </div>
@@ -311,7 +345,7 @@
                 navbar.style.backdropFilter = 'none';
                 navbar.style.borderBottom = 'none';
                 navbar.style.boxShadow = 'none';
-                mobileMenu.classList.add('hidden'); // Close mobile menu on scroll to top
+                mobileMenu.classList.add('hidden');
             }
         });
 

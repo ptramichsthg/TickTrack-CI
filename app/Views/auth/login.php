@@ -81,7 +81,7 @@
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer">
                 <label for="remember" class="ml-2 block text-sm text-gray-700 cursor-pointer">Ingat saya</label>
             </div>
-            <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">Lupa password?</a>
+            <a href="<?= base_url('auth/forgot-password') ?>" class="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">Lupa password?</a>
         </div>
 
         <!-- Submit -->

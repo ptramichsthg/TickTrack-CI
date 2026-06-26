@@ -51,25 +51,31 @@
                 if ($n['type'] === 'ticket_reply') { $icon = 'message-square'; $color = 'blue'; }
                 elseif ($n['type'] === 'ticket_status' || $n['type'] === 'ticket_created') { $icon = 'refresh-cw'; $color = 'yellow'; }
                 elseif ($n['type'] === 'ticket_resolved') { $icon = 'check-circle'; $color = 'green'; }
+
+                preg_match('/#TK-\d{6}/', $n['title'] . ' ' . $n['message'], $matches);
+                $ticketCode = !empty($matches) ? str_replace('#', '', $matches[0]) : null;
+                $link = $ticketCode ? base_url('admin/tickets/' . $ticketCode) : '#';
             ?>
-            <div class="flex items-start p-4 rounded-xl border transition-all hover:shadow-md <?= $n['is_read'] ? 'bg-white border-gray-200' : 'bg-blue-50 border-blue-200' ?>">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 mr-4 bg-<?= $color ?>-100">
-                    <i data-feather="<?= $icon ?>" class="w-6 h-6 text-<?= $color ?>-600"></i>
-                </div>
-                <div class="flex-1 min-w-0">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <h3 class="text-sm font-semibold mb-1 <?= $n['is_read'] ? 'text-gray-900' : 'text-blue-900' ?>">
-                                <?= esc($n['title']) ?>
-                            </h3>
-                            <p class="text-sm text-gray-600 mb-2"><?= esc($n['message']) ?></p>
-                            <p class="text-xs text-gray-500">
-                                <?= date('d M Y, H:i', strtotime($n['created_at'])) ?>
-                            </p>
+            <a href="<?= $link ?>" class="flex items-start p-4 rounded-xl border transition-all hover:shadow-md <?= $n['is_read'] ? 'bg-white border-gray-200' : 'bg-blue-50 border-blue-200' ?> cursor-pointer block">
+                <div class="flex w-full">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 mr-4 bg-<?= $color ?>-100">
+                        <i data-feather="<?= $icon ?>" class="w-6 h-6 text-<?= $color ?>-600"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <h3 class="text-sm font-semibold mb-1 <?= $n['is_read'] ? 'text-gray-900' : 'text-blue-900' ?>">
+                                    <?= esc($n['title']) ?>
+                                </h3>
+                                <p class="text-sm text-gray-600 mb-2"><?= esc($n['message']) ?></p>
+                                <p class="text-xs text-gray-500">
+                                    <?= date('d M Y, H:i', strtotime($n['created_at'])) ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
             <?php endforeach; ?>
         </div>
         <?php endif; ?>

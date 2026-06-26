@@ -14,4 +14,12 @@ class Home extends BaseController
 
         return view('landing');
     }
+
+    /**
+     * Halaman About Us — Profil anggota kelompok dan deskripsi proyek.
+     */
+    public function about()
+    {
+        return view('about');
+    }
 }

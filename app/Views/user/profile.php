@@ -32,11 +32,14 @@
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                 <div class="text-center">
                     <div class="relative inline-block">
-                        <img src="https://ui-avatars.com/api/?name=<?= urlencode($user['name']) ?>&background=0D8ABC&color=fff&bold=true&size=128"
-                            alt="Profile" class="w-32 h-32 rounded-2xl shadow-lg mx-auto">
-                        <button class="absolute bottom-0 right-0 w-10 h-10 bg-blue-600 text-white rounded-xl shadow-lg hover:bg-blue-700 transition-all flex items-center justify-center">
+                        <?php if(!empty($user['avatar'])): ?>
+                            <img src="<?= base_url(esc($user['avatar'])) ?>" alt="Profile" class="w-32 h-32 rounded-2xl shadow-lg mx-auto object-cover">
+                        <?php else: ?>
+                            <img src="https://ui-avatars.com/api/?name=<?= urlencode($user['name']) ?>&background=0D8ABC&color=fff&bold=true&size=128" alt="Profile" class="w-32 h-32 rounded-2xl shadow-lg mx-auto">
+                        <?php endif; ?>
+                        <label for="avatar_upload" class="absolute bottom-0 right-0 w-10 h-10 bg-blue-600 text-white rounded-xl shadow-lg hover:bg-blue-700 transition-all flex items-center justify-center cursor-pointer">
                             <i data-feather="camera" class="w-5 h-5"></i>
-                        </button>
+                        </label>
                     </div>
                     <h3 class="mt-4 text-xl font-bold text-gray-900"><?= esc($user['name']) ?></h3>
                     <p class="text-sm text-gray-500"><?= esc($user['email']) ?></p>
@@ -71,7 +74,8 @@
                     <h2 class="text-lg font-semibold text-gray-900">Informasi Pribadi</h2>
                 </div>
 
-                <form action="<?= base_url('user/profile/update') ?>" method="POST" class="space-y-4">
+                <form action="<?= base_url('user/profile/update') ?>" method="POST" enctype="multipart/form-data" class="space-y-4">
+                    <input type="file" name="avatar" id="avatar_upload" class="hidden" accept="image/*" onchange="previewImage(this)">
                     <?= csrf_field() ?>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
@@ -162,5 +166,16 @@
         </div>
     </div>
 </div>
+</div>
+
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            // Optional: You could implement an immediate preview here by targeting the img tag
+            // But we can just rely on the submit for simplicity or use a toast notification
+            alert('File foto dipilih: ' + input.files[0].name + '. Klik Simpan Perubahan untuk mengunggah.');
+        }
+    }
+</script>
 <?= $this->endSection() ?>
 

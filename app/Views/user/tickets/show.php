@@ -18,9 +18,20 @@ $priorityColors = ['low'=>'text-gray-600 bg-gray-100','medium'=>'text-blue-600 b
             <h2 class="text-xl font-bold text-gray-800"><?= esc($ticket['title']) ?></h2>
             <p class="text-sm text-gray-500 mt-1">Dibuat pada <?= date('d M Y, H:i', strtotime($ticket['created_at'])) ?></p>
         </div>
-        <a href="<?= base_url('user/tickets') ?>" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200">
-            <i data-feather="arrow-left" class="w-4 h-4"></i> Kembali
-        </a>
+        <div class="flex items-center gap-3">
+            <?php if (in_array($ticket['status'], ['open', 'in_progress'])): ?>
+            <form action="<?= base_url('user/tickets/' . $ticket['code'] . '/status') ?>" method="POST" onsubmit="return confirm('Apakah Anda yakin masalah ini telah selesai?');">
+                <?= csrf_field() ?>
+                <input type="hidden" name="status" value="resolved">
+                <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 border border-green-200 rounded-lg text-sm hover:bg-green-100 font-medium">
+                    <i data-feather="check-circle" class="w-4 h-4"></i> Tandai Selesai
+                </button>
+            </form>
+            <?php endif; ?>
+            <a href="<?= base_url('user/tickets') ?>" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200">
+                <i data-feather="arrow-left" class="w-4 h-4"></i> Kembali
+            </a>
+        </div>
     </div>
 </div>
 
