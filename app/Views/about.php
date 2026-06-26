@@ -184,13 +184,6 @@
                         'color' => 'blue',
                     ],
                     [
-                        'name'  => 'Bagas Ibnu Abdillah',
-                        'nim'   => '2350081074',
-                        'role'  => 'Frontend Developer & UI/UX Designer',
-                        'icon'  => 'monitor',
-                        'color' => 'purple',
-                    ],
-                    [
                         'name'  => 'Putra Michael Sitohang',
                         'nim'   => '2350081087',
                         'role'  => 'Full-Stack Developer & QA Tester',

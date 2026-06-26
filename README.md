@@ -6,8 +6,7 @@ TickTrack adalah platform manajemen tiket pengaduan pelanggan berbasis web yang 
 
 Proyek ini dikembangkan oleh:
 1. **Arnest Suhendra** (2350081054)
-2. **Bagas Ibnu Abdillah** (2350081074)
-3. **Putra Michael Sitohang** (2350081087)
+2. **Putra Michael Sitohang** (2350081087)
 
 ## Fitur Utama
 
