@@ -173,7 +173,7 @@
                 <p class="text-gray-500 text-lg max-w-xl mx-auto">Mahasiswa Informatika yang berkolaborasi membangun TickTrack.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                 <?php
                 $members = [
                     [
